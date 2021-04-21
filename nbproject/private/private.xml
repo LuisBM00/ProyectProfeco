@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Luis%20Barroso/Documents/NetBeansProjects/ProfecoAPP/web/index.html</file>
-            <file>file:/C:/Users/Luis%20Barroso/Documents/NetBeansProjects/ProfecoAPP/src/java/profeco/negocio/app/resources/SupermercadoResources.java</file>
-            <file>file:/C:/Users/Luis%20Barroso/Documents/NetBeansProjects/ProfecoAPP/src/java/profeco/api/App.java</file>
-            <file>file:/C:/Users/Luis%20Barroso/Documents/NetBeansProjects/ProfecoAPP/src/java/profeco/negocio/ds/Conexion.java</file>
-            <file>file:/C:/Users/Luis%20Barroso/Documents/NetBeansProjects/ProfecoAPP/src/java/profeco/negocio/app/services/SupermercadoServices.java</file>
-            <file>file:/C:/Users/Luis%20Barroso/Documents/NetBeansProjects/ProfecoAPP/src/java/profeco/negocio/dto/Supermercado.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
