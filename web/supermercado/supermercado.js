@@ -4,7 +4,7 @@ $(document).ready(
         function () {
 
             $('#btnBuscar').click(function () {
-      
+
 
                 var nombre = $('#xnombre').val();
                 var id = $('#xid').val();
@@ -29,11 +29,11 @@ $(document).ready(
                             $('#tbody').empty();
                             var infoJSON = datos;
                             console.log(datos);
-                     
+
                             console.log(infoJSON);
                             var infoJSONhtml;
                             for (var i = 0; i < infoJSON.length; i++) {
-                                  infoJSONhtml += '<tr> <td>' + infoJSON[i].idSupermercado + '</td> <td>' + infoJSON[i].nombreSupermercado + '</td> <td>' + infoJSON[i].direccion + '</td> <td> <button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalModificar" onclick="MandarDatos(' + infoJSON[i].idSupermercado + ',`' + infoJSON[i].nombreSupermercado + '`,`' + infoJSON[i].direccion + '`)">Modificar</button>  <button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalEliminar" onclick="MandarDatos(' + infoJSON[i].idSupermercado + ',`' + infoJSON[i].nombreSupermercado + '`,`' + infoJSON[i].direccion + '`)">Eliminar</button>  </td></tr>';
+                                infoJSONhtml += '<tr> <td>' + infoJSON[i].idSupermercado + '</td> <td>' + infoJSON[i].nombreSupermercado + '</td> <td>' + infoJSON[i].direccion + '</td> <td> <button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalModificar" onclick="MandarDatos(' + infoJSON[i].idSupermercado + ',`' + infoJSON[i].nombreSupermercado + '`,`' + infoJSON[i].direccion + '`)">Modificar</button>  <button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalEliminar" onclick="MandarDatos(' + infoJSON[i].idSupermercado + ',`' + infoJSON[i].nombreSupermercado + '`,`' + infoJSON[i].direccion + '`)">Eliminar</button>  </td></tr>';
                             }
                             $('#tbody').html(infoJSONhtml);
 //                       
@@ -52,7 +52,7 @@ $(document).ready(
                     {
                         var infoJSON = datos;
                         console.log(datos);
-                     
+
                         console.log(infoJSON);
                         var infoJSONhtml;
                         for (var i = 0; i < infoJSON.length; i++) {
@@ -79,7 +79,7 @@ $(document).ready(
                 });
 
                 $('#ModalEliminar').on('show.bs.modal', function (e) {
-                   var id = xid;
+                    var id = xid;
                     var nombre = xnombre;
                     var direccion = xdireccion;
                     $('#eid').val(id);
@@ -104,7 +104,7 @@ $(document).ready(
                             data: JSON.stringify(data),
                             method: 'post', //en este caso 
                             contentType: "application/json",
-                            
+
                             Accept: "application/json",
                             success: function (response) {
                                 alert("funciona bien");
@@ -124,7 +124,7 @@ $(document).ready(
             $('#btnModificar').click(
                     function (e) {
                         e.preventDefault();
-                    
+
                         var id = $('#mid').val();
                         const data = {
                             nombreSupermercado: $('#mNombre').val(),
@@ -133,13 +133,12 @@ $(document).ready(
                         console.log(data);
 
                         $.ajax({
-                            url:'/ProfecoAPP/api/supermercados/' + id,
+                            url: '/ProfecoAPP/api/supermercados/' + id,
                             data: JSON.stringify(data),
                             method: 'put', //en este caso 
                             contentType: "application/json",
                             Accept: "application/json",
-                           
-                          
+
                             success: function (response) {
                                 alert("funciona bien");
                                 $(location).attr('href', "supermercado.html");
@@ -155,14 +154,14 @@ $(document).ready(
             $('#btnEliminar').click(
                     function (e) {
                         e.preventDefault();
-                  
 
-                        var id = $('#eid').val();                       
-                       
+
+                        var id = $('#eid').val();
+
 
                         $.ajax({
-                            url: '/ProfecoAPP/api/supermercados/' + id,                           
-                            method: 'delete',  
+                            url: '/ProfecoAPP/api/supermercados/' + id,
+                            method: 'delete',
                             contentType: "application/json",
                             Accept: "application/json",
                             success: function (response) {
