@@ -12,16 +12,17 @@ package profeco.negocio.dto;
 public class Cliente {
     
     
-    private int idCliente;
+    private String idCliente;
     private String NombreCliente;
     private String Correo;
     private boolean Sexo;
     private byte Edad;
-
+    private String idClienteAnterior;
+    
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String NombreCliente, String Correo, boolean Sexo, byte Edad) {
+    public Cliente(String idCliente, String NombreCliente, String Correo, boolean Sexo, byte Edad) {
         this.idCliente = idCliente;
         this.NombreCliente = NombreCliente;
         this.Correo = Correo;
@@ -29,7 +30,16 @@ public class Cliente {
         this.Edad = Edad;
     }
 
-    public int getIdCliente() {
+    public String getIdClienteAnterior() {
+        return idClienteAnterior;
+    }
+
+    public void setIdClienteAnterior(String idClienteAnterior) {
+        this.idClienteAnterior = idClienteAnterior;
+    }
+
+    
+    public String getIdCliente() {
         return idCliente;
     }
 
@@ -41,7 +51,7 @@ public class Cliente {
         return Correo;
     }
 
-    public boolean isSexo() {
+    public boolean getSexo() {
         return Sexo;
     }
 
@@ -49,7 +59,7 @@ public class Cliente {
         return Edad;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
     }
 

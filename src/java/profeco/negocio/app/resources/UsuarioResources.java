@@ -20,12 +20,11 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import profeco.negocio.app.services.SupermercadoServices;
 import profeco.negocio.app.services.UsuarioServices;
-import profeco.negocio.dto.Supermercado;
+
 import profeco.negocio.dto.Usuario;
 
-@Path("/usuarios")
+@Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UsuarioResources {
@@ -125,9 +124,5 @@ public class UsuarioResources {
 
         return response;
     }
-    
-    
-    
-    
     
 }

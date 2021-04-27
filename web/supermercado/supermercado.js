@@ -23,7 +23,7 @@ $(document).ready(
 
 
                 console.log(filtro);
-                $.get('/ProfecoAPP/api/supermercados' + filtro,
+                $.get('/ProyectProfeco/api/supermercados/' + filtro,
                         function (datos)
                         {
                             $('#tbody').empty();
@@ -47,7 +47,7 @@ $(document).ready(
 
 
 
-            $.get('/ProfecoAPP/api/supermercados',
+            $.get('/ProyectProfeco/api/supermercados/',
                     function (datos)
                     {
                         var infoJSON = datos;
@@ -100,7 +100,7 @@ $(document).ready(
                         console.log(data);
 
                         $.ajax({
-                            url: '/ProfecoAPP/api/supermercados/',
+                            url: '/ProyectProfeco/api/supermercados/',
                             data: JSON.stringify(data),
                             method: 'post', //en este caso 
                             contentType: "application/json",
@@ -133,7 +133,7 @@ $(document).ready(
                         console.log(data);
 
                         $.ajax({
-                            url: '/ProfecoAPP/api/supermercados/' + id,
+                            url: '/ProyectProfeco/api/supermercados/' + id,
                             data: JSON.stringify(data),
                             method: 'put', //en este caso 
                             contentType: "application/json",
@@ -160,7 +160,7 @@ $(document).ready(
 
 
                         $.ajax({
-                            url: '/ProfecoAPP/api/supermercados/' + id,
+                            url: '/ProyectProfeco/api/supermercados/' + id,
                             method: 'delete',
                             contentType: "application/json",
                             Accept: "application/json",
