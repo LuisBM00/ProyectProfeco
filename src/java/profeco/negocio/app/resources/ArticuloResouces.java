@@ -1,5 +1,8 @@
- 
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package profeco.negocio.app.resources;
 
 import java.net.URI;
@@ -20,23 +23,29 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import profeco.negocio.app.services.UsuarioServices;
+import profeco.negocio.app.services.ArticuloServices;
+import profeco.negocio.app.services.SupermercadoServices;
+import profeco.negocio.dto.Articulo;
+import profeco.negocio.dto.Supermercado;
 
-import profeco.negocio.dto.Usuario;
-
-@Path("/users")
+/**
+ *
+ * @author Luis Barroso
+ */
+@Path("/articulos")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UsuarioResources {
-     private final UsuarioServices servicio;
+public class ArticuloResouces {
+    
+    private final ArticuloServices servicio;
 
-    public UsuarioResources() {
-        this.servicio = new UsuarioServices();
+    public ArticuloResouces() {
+        this.servicio = new ArticuloServices();
     }
 
     @GET
-    public Response getUsuario(@QueryParam("UsuarioID") String nombre) {
-        Usuario[] arr = null;
+    public Response getArticulo(@QueryParam("ArticuloNombre") String nombre) {
+        Articulo[] arr = null;
         
         try {
 
@@ -50,50 +59,49 @@ public class UsuarioResources {
         } catch (Exception e) {
             Response.status(Response.Status.INTERNAL_SERVER_ERROR);
         }
-        List<Usuario> list = new LinkedList<>();
+        List<Articulo> list = new LinkedList<>();
         list = Arrays.asList(arr);
-        GenericEntity<List<Usuario>> entities = new GenericEntity<List<Usuario>>(list) {
+        GenericEntity<List<Articulo>> entities = new GenericEntity<List<Articulo>>(list) {
         };
 
         return Response.ok(entities).build();
     }
 
-//    @GET
-//    @Path("/{usuarioId}")
-//
-//    public Response getSupermercado(@PathParam("usuarioId") String id) {
-//        Supermercado objSuper = null;
-//        Response response = null;
-//        try {
-//            objSuper = servicio.Buscar(id);
-//            Supermercado[] arr = new Supermercado[1];
-//            arr[0] = objSuper;
-//            response = Response.ok(arr).build();
-//        } catch (Exception e) {
-//            response = Response.status(Response.Status.NOT_FOUND).build();
-//        }
-//
-//        return response;
-//    }
+    @GET
+    @Path("/{articuloId}")
+
+    public Response getArticulo(@PathParam("articuloId") int id) {
+        Articulo objSuper = null;
+        Response response = null;
+        try {
+            objSuper = servicio.Buscar(id);
+            Articulo[] arr = new Articulo[1];
+            arr[0] = objSuper;
+            response = Response.ok(arr).build();
+        } catch (Exception e) {
+            response = Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return response;
+    }
 
 
     @POST
-    public Response addUsuario(Usuario obj, @Context UriInfo uriInfo) {
+    public Response addArticulo(Articulo obj, @Context UriInfo uriInfo) {
 
         try {
             servicio.Agregar(obj);
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
-        URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(obj.getIdUsuario())).build();
+        URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(obj.getIdArticulo())).build();
         //return Response.status(Response.Status.CREATED).build();
         return Response.created(uri).entity(obj).build();
     }
 
     @PUT
-    @Path("/{usuarioId}")
-    public Response updateSupermercado(@PathParam("usuarioId") String id, Usuario objSuper) {
-        objSuper.setIdUsuario(id);
+    @Path("/{articuloId}")
+    public Response updateSupermercado(@PathParam("articuloId") int id, Articulo objSuper) {
+        objSuper.setIdArticulo(id);
         Response response = null;
         try {
             servicio.Modificar(objSuper);
@@ -107,15 +115,15 @@ public class UsuarioResources {
     }
 
     @DELETE
-    @Path("/{usuarioId}")
+    @Path("/{articuloId}")
 
-    public Response deleteSupermercado(@PathParam("usuarioId") String id) {
+    public Response deleteArticulo(@PathParam("articuloId") int id) {
         Response response = null;
 
-        Usuario objSuper = new Usuario();
+        Articulo objSuper = new Articulo();
 
         try {
-            objSuper.setIdUsuario(id);
+            objSuper.setIdArticulo(id);
             servicio.Eliminar(objSuper);
             response = Response.ok().build();
         } catch (Exception e) {
@@ -124,5 +132,4 @@ public class UsuarioResources {
 
         return response;
     }
-    
 }

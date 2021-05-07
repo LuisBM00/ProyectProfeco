@@ -13,14 +13,13 @@ public class Articulo {
         this.idArticulo = idArticulo;
         this.NombreArticulo = NombreArticulo;
         this.Marca = Marca;
-        this.TipoArticulo = TipoArticulo;
+       
     }
 
     public Articulo() {
     }
     
     
-
     public int getIdArticulo() {
         return idArticulo;
     }
@@ -31,10 +30,6 @@ public class Articulo {
 
     public String getMarca() {
         return Marca;
-    }
-
-    public String getTipoArticulo() {
-        return TipoArticulo;
     }
 
     public void setIdArticulo(int idArticulo) {
@@ -48,11 +43,7 @@ public class Articulo {
     public void setMarca(String Marca) {
         this.Marca = Marca;
     }
-
-    public void setTipoArticulo(String TipoArticulo) {
-        this.TipoArticulo = TipoArticulo;
-    }
-    
+  
     
     
 }
