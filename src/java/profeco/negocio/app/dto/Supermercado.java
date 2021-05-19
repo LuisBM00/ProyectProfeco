@@ -1,5 +1,5 @@
 
-package profeco.negocio.dto;
+package profeco.negocio.app.dto;
 
 
 public class Supermercado {

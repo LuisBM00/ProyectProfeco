@@ -24,7 +24,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import profeco.negocio.app.services.SupermercadoServices;
-import profeco.negocio.dto.Supermercado;
+import profeco.negocio.app.dto.Supermercado;
 
 @Path("/supermercados")
 @Produces(MediaType.APPLICATION_JSON)

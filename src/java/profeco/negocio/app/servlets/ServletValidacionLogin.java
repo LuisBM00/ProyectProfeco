@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import profeco.negocio.app.services.UsuarioServices;
-import profeco.negocio.dto.Usuario;
+import profeco.negocio.app.dto.Usuario;
 
 /**
  *

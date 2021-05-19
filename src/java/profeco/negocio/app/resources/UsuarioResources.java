@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import profeco.negocio.app.services.UsuarioServices;
 
-import profeco.negocio.dto.Usuario;
+import profeco.negocio.app.dto.Usuario;
 
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)

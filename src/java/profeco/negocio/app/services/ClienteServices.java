@@ -4,8 +4,8 @@ package profeco.negocio.app.services;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import profeco.negocio.ds.Conexion;
-import profeco.negocio.dto.Cliente;
+import profeco.negocio.app.ds.Conexion;
+import profeco.negocio.app.dto.Cliente;
 
 
 
