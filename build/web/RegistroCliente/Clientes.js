@@ -7,17 +7,7 @@ $(document).ready(
         function () {
             
                        
-             $.get('../ServletConsultarUsuarioIniciado', function (response) {
-                console.log(response);
-                             
-                if (response=== 'null') {
-                    console.log(response);
-                    $(location).attr('href', "../Session/sesion.html");
-                } else {
-
-
-                }
-            });
+            
 
             $('#aCerrarSesion').click(
                     function (e) {
@@ -29,7 +19,7 @@ $(document).ready(
                                 function (datos)
                                 {
                                     alert("Cerraste Sesion");
-                                    $(location).attr('href', "../sesion.html");
+                                    $(location).attr('href', "../Session/sesion.html");
 
                                 }
                         );
@@ -55,7 +45,7 @@ $(document).ready(
                                     $('#Correo').value = "";
                                     $('#IdUsuario').value = "";
                                     alert("Se ha registrado correctamente");
-                                    $(location).attr('href', "../sesion.html");
+                                    $(location).attr('href', "../Session/sesion.html");
 
                                 }
                         );
