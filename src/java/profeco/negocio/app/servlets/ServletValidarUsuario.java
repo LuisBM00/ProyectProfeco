@@ -7,9 +7,6 @@ package profeco.negocio.app.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,12 +45,18 @@ public class ServletValidarUsuario extends HttpServlet {
 //        } catch (SQLException ex) {
 //            Logger.getLogger(ServletValidarUsuario.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        
-        if(usuario.getIdTipoUsuario()==1){
-            resultado = "si";
-        }
-        else{
-            resultado = "no";
+        switch (usuario.getIdTipoUsuario()) {
+            case 1:
+                resultado = "1";
+                break;
+            case 2:
+                resultado = "2";
+                break;
+            case 3:
+                resultado = "3";
+                break;
+            default:
+                break;
         }
         
         try (PrintWriter out = response.getWriter()) {

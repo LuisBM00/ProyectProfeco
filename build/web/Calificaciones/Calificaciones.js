@@ -1,5 +1,15 @@
 $(document).ready(
         function () {
+
+            $.get('../ServletConsultarUsuarioIniciado', function (response) {
+                console.log(response);
+                if (response === 'null') {
+                    console.log(response);
+                    $(location).attr('href', "../Session/sesion.html");
+                } else {
+
+                }
+            });
             var idSuper;
             var idCli;
             console.log();
@@ -23,11 +33,21 @@ $(document).ready(
                     function (datos)
                     {
 
+                        datosJSON = JSON.parse(datos);
+                        idCli = datosJSON.idCliente;
 
-                        idCli = datos;
+                        if (datosJSON.idTipoUsuario !== 1)
+                        {
+                            $('#verReporte').css('display', 'none');
+                        }
 
+//                       
+                    }
+            );
+            $('#verReporte').click(
+                    function (e) {
 
-//                       |
+                        $(location).attr('href', "../ServletReporteCalificaciones");
                     }
             );
 
@@ -42,7 +62,7 @@ $(document).ready(
                 if (id > 0) {
                     filtro = "/" + id;
                 } else {
-                    filtro = "?nombreSupermercado=" + nombre;
+                    filtro = "?idSupermercado=" + nombre;
                 }
 
                 if (nombre === undefined && id === 0) {
@@ -130,7 +150,7 @@ $(document).ready(
                                 alert("funciona bien");
                                 $('#Nombre').value = "";
                                 $('#direccion').value = "";
-                                console.log(response);
+
                             },
                             error: function (error) {
                                 alert("No funciona");

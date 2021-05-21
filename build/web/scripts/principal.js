@@ -10,16 +10,61 @@
 $(document).ready(function () {
 
     $.get('./ServletConsultarUsuarioIniciado', function (response) {
-        console.log(response);
-        if (response === 'null') {
-            console.log(response);
-            $(location).attr('href', "sesion.html");
-        } else {
+                console.log(response);
+                             
+                if (response=== 'null') {
+                    console.log(response);
+                    $(location).attr('href', "Session/sesion.html");
+                } else {
 
 
-        }
-    });
+                }
+            });
 });
+
+$('#aArticulos').click(
+        function (e) {
+
+            e.preventDefault();
+            // var frm=new FormData();
+
+            $.get('./ServletValidarUsuario ',
+                    function (datos)
+                    {
+                        var d = datos;
+                        console.log(d);
+                        if (d === '2' || d ==='3') {                          
+                           alert("No tienes permisos para ingresar a este catalogo")
+                        } else {
+                           $(location).attr('href', "articulo/articulo.html");
+                        }
+
+                    }
+            );
+        }
+);
+
+$('#aMultas').click(
+        function (e) {
+
+            e.preventDefault();
+            // var frm=new FormData();
+
+            $.get('./ServletValidarUsuario ',
+                    function (datos)
+                    {
+                        var d = datos;
+
+                        if (d === '2' || d ==='3') {                          
+                           alert("No tienes permisos para ingresar a este catalogo")
+                        } else {
+                           $(location).attr('href', "Multa/multa.html");
+                        }
+
+                    }
+            );
+        }
+);
 
 $('#aSupermercados').click(
         function (e) {
@@ -32,10 +77,32 @@ $('#aSupermercados').click(
                     {
                         var d = datos;
 
-                        if (d === "si") {
-                            $(location).attr('href', "supermercado/supermercado.html");
+                        if (d === '2' || d ==='3') {                          
+                           alert("No tienes permisos para ingresar a este catalogo")
                         } else {
-                            alert("No tienes permisos para ingresar a este catalogo")
+                           $(location).attr('href', "supermercado/supermercado.html");
+                        }
+
+                    }
+            );
+        }
+);
+
+$('#aCalificarSupers').click(
+        function (e) {
+
+            e.preventDefault();
+            // var frm=new FormData();
+
+            $.get('./ServletValidarUsuario ',
+                    function (datos)
+                    {
+                        var d = datos;
+
+                        if (d ==='3') {                          
+                           alert("No tienes permisos para ingresar a este catalogo")
+                        } else {
+                           $(location).attr('href', "Calificaciones/Calificaciones.html");
                         }
 
                     }
@@ -64,7 +131,7 @@ $('#aSupermercados').click(
 //        }
 //);
 
-$('#aCerrarSesion').click(
+$('#a').click(
         function (e) {
 
             e.preventDefault();
@@ -74,7 +141,7 @@ $('#aCerrarSesion').click(
                     function (datos)
                     {
                         alert("Cerraste Sesion");
-                        $(location).attr('href', "sesion.html");
+                        $(location).attr('href', "Session/sesion.html");
 
                     }
             );

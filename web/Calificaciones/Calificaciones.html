@@ -22,8 +22,7 @@ and open the template in the editor.
             <input type="number" class="form-control" id="xid" name="txtId"  >
             <br>
         </div>
-        <label for="id">Nombre Supermercado</label>
-        <input type="text" class="form-control" id="xnombre" name="txtNombre" >
+     
         <br>
         <button type="submit" class="btn btn-primary " id="btnBuscar">Buscar</button>
         <br>
@@ -41,6 +40,7 @@ and open the template in the editor.
                 </thead>
             </table>
         </div>
+        
         <div class="tbl-content">
             <table cellpadding="0" cellspacing="0" border="0">
                 <tbody id="tbody">                   
@@ -49,13 +49,15 @@ and open the template in the editor.
         </div>
         <br>
 
+<button id="verReporte" type="button" class="btn btn-primary">
+                Ver Reporte
+            </button>
 
     </section>
 
-
     <!-- Modal Eliminar --> 
     <div class="modal fade" id="ModalEliminar" tabindex="-1" aria-labelledby="ModalEliminar" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Comentarios</h5>
@@ -76,8 +78,8 @@ and open the template in the editor.
                                 <textarea id="Comentario" class="form-control" aria-label="With textarea"></textarea>
                                 <label for="customRange2" class="form-label">Calificacion</label>
                                 <input type="range" class="form-range" min="0" max="5" id="calificacion" step="1" value="3">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button id="comentar" type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button id="comentar" type="button" class="btn btn-primary">Comentar</button>
                             </div>                
                             </div>
                             </div>

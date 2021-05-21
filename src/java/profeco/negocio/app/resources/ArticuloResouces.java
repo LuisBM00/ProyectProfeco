@@ -24,9 +24,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import profeco.negocio.app.services.ArticuloServices;
-import profeco.negocio.app.services.SupermercadoServices;
 import profeco.negocio.app.dto.Articulo;
-import profeco.negocio.app.dto.Supermercado;
 
 /**
  *

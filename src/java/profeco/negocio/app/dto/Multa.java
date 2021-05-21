@@ -10,21 +10,21 @@ package profeco.negocio.app.dto;
  * @author Luis Barroso
  */
 public class Multa {
-     private int idMulta;
-    private int idSupermercado;
-    private int NumInconsistencias;
+    private int idMulta;
+    private int idSupermercado; 
     private String TipoSancion;
-    private double Sancion;
+    private int NumInconsistencias;
+   
 
     public Multa() {
     }
 
-    public Multa(int idMulta, int idSupermercado, int NumInconsistencias, String TipoSancion, double Sancion) {
+    public Multa(int idMulta, int idSupermercado, int NumInconsistencias, String TipoSancion) {
         this.idMulta = idMulta;
         this.idSupermercado = idSupermercado;
         this.NumInconsistencias = NumInconsistencias;
         this.TipoSancion = TipoSancion;
-        this.Sancion = Sancion;
+        
     }
 
     public int getIdMulta() {
@@ -43,10 +43,7 @@ public class Multa {
         return TipoSancion;
     }
 
-    public double getSancion() {
-        return Sancion;
-    }
-
+   
     public void setIdMulta(int idMulta) {
         this.idMulta = idMulta;
     }
@@ -63,9 +60,6 @@ public class Multa {
         this.TipoSancion = TipoSancion;
     }
 
-    public void setSancion(double Sancion) {
-        this.Sancion = Sancion;
-    }
     
     
 }

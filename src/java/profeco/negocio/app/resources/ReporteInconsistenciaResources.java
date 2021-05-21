@@ -18,8 +18,10 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import profeco.negocio.app.dto.Multa;
 import profeco.negocio.app.services.ReporteInconsistenciaServices;
 import profeco.negocio.app.dto.ReporteInconsistencia;
+import profeco.negocio.app.services.MultaService;
 
 @Path("/ReporteInconsistencia")
 @Produces(MediaType.APPLICATION_JSON)
@@ -74,8 +76,17 @@ public class ReporteInconsistenciaResources {
     @POST
     public Response addInconsistencia(ReporteInconsistencia obj, @Context UriInfo uriInfo) {
 
-        try {
+        try {                   
             servicio.Agregar(obj);
+            int cantidad = servicio.CantidadInconsistencias(obj.getIdSupermercado());
+            
+            if(cantidad>5){
+                Multa m = new Multa();
+                m.setIdSupermercado(obj.getIdSupermercado());
+                m.setNumInconsistencias(cantidad);
+                m.setTipoSancion("Monetaria");
+                new MultaService().Agregar(m);
+            }
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }

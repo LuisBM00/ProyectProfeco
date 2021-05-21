@@ -5,6 +5,19 @@
  */
 $(document).ready(
         function () {
+            
+                       
+             $.get('../ServletConsultarUsuarioIniciado', function (response) {
+                console.log(response);
+                             
+                if (response=== 'null') {
+                    console.log(response);
+                    $(location).attr('href', "../Session/sesion.html");
+                } else {
+
+
+                }
+            });
 
             $('#aCerrarSesion').click(
                     function (e) {

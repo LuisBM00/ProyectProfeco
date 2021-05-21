@@ -8,6 +8,18 @@
 $(document).ready(
         function () {
 
+            $.get('../ServletConsultarUsuarioIniciado', function (response) {
+                console.log(response);
+                             
+                if (response=== 'null') {
+                    console.log(response);
+                    $(location).attr('href', "../Session/sesion.html");
+                } else {
+
+
+                }
+            });
+
             $('#btnBuscar').click(function () {
 
 
@@ -61,8 +73,8 @@ $(document).ready(
                         console.log(infoJSON);
                         var infoJSONhtml;
                         for (var i = 0; i < infoJSON.length; i++) {
-                             infoJSONhtml += '<tr> <td>' + infoJSON[i].idArticulo + '</td> <td>' + infoJSON[i].nombreArticulo + '</td> <td>' + infoJSON[i].marca + '</td> <td> <button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalModificar" onclick="MandarDatos(' + infoJSON[i].idArticulo + ',`' + infoJSON[i].nombreArticulo + '`,`' + infoJSON[i].marca + '`)">Modificar</button>  <button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalEliminar" onclick="MandarDatos(' + infoJSON[i].idArticulo + ',`' + infoJSON[i].nombreArticulo + '`,`' + infoJSON[i].marca + '`)">Eliminar</button>  </td></tr>';
-                              }
+                            infoJSONhtml += '<tr> <td>' + infoJSON[i].idArticulo + '</td> <td>' + infoJSON[i].nombreArticulo + '</td> <td>' + infoJSON[i].marca + '</td> <td> <button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalModificar" onclick="MandarDatos(' + infoJSON[i].idArticulo + ',`' + infoJSON[i].nombreArticulo + '`,`' + infoJSON[i].marca + '`)">Modificar</button>  <button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalEliminar" onclick="MandarDatos(' + infoJSON[i].idArticulo + ',`' + infoJSON[i].nombreArticulo + '`,`' + infoJSON[i].marca + '`)">Eliminar</button>  </td></tr>';
+                        }
                         $('#tbody').html(infoJSONhtml);
 //                       |
                     }

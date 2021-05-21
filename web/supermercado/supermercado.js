@@ -3,6 +3,18 @@
 $(document).ready(
         function () {
 
+            $.get('../ServletConsultarUsuarioIniciado', function (response) {
+                console.log(response);
+                             
+                if (response=== 'null') {
+                    console.log(response);
+                    $(location).attr('href', "../Session/sesion.html");
+                } else {
+
+
+                }
+            });
+
             $('#btnBuscar').click(function () {
 
 
@@ -14,7 +26,7 @@ $(document).ready(
                 if (id > 0) {
                     filtro = "/" + id;
                 } else {
-                    filtro = "?nombreSupermercado=" + nombre;
+                    filtro = '?SuperNombre=' + nombre;
                 }
 
                 if (nombre === undefined && id === 0) {
@@ -23,7 +35,7 @@ $(document).ready(
 
 
                 console.log(filtro);
-                $.get('/ProyectProfeco/api/supermercados/' + filtro,
+                $.get('/ProyectProfeco/api/supermercados' + filtro,
                         function (datos)
                         {
                             $('#tbody').empty();

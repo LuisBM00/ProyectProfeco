@@ -7,11 +7,23 @@
 
 $(document).ready(
         function () {
-    
-           
+
+            $.get('../ServletConsultarUsuarioIniciado', function (response) {
+                console.log(response);
+
+                if (response === 'null') {
+                    console.log(response);
+                    $(location).attr('href', "../Session/sesion.html");
+                } else {
+                    
+
+                }
+            });
+
+
             var Usuario;
             var idSup;
-           
+
             ObtenerUsuario = function () {
                 $.get('/ProyectProfeco/ServletConsultarUsuarioIniciado',
                         function (datos)
@@ -19,47 +31,52 @@ $(document).ready(
 
                             Usuario = JSON.parse(datos);
                             console.log(Usuario);
+                            if (Usuario.idTipoUsuario !== 1)
+                            {
+                                $('#verReporte').css('display', 'none');
+                            }
 //                       |
                         }
                 );
             }
-         
-         ListarSup=function(){   $.get('/ProyectProfeco/api/supermercados',
-                    function (datos)
-                    {
-                        ObtenerUsuario();
-                        var infoJSON = datos;
-                        console.log(datos);
-                        console.log(infoJSON);
-                        var infoJSONhtml;
-                        for (var i = 0; i < infoJSON.length; i++) {
-                            if (Usuario.idTipoUsuario !== 3) {
-                                if (i == 0)
-                                {
-                                    infoJSONhtml += '<option value="' + infoJSON[i].idSupermercado + '" selected>' + infoJSON[i].nombreSupermercado + '</option> ';
-                                    idSup = infoJSON[i].idSupermercado;
+
+            ListarSup = function () {
+                $.get('/ProyectProfeco/api/supermercados',
+                        function (datos)
+                        {
+                            ObtenerUsuario();
+                            var infoJSON = datos;
+                            console.log(datos);
+                            console.log(infoJSON);
+                            var infoJSONhtml;
+                            for (var i = 0; i < infoJSON.length; i++) {
+                                if (Usuario.idTipoUsuario !== 3) {
+                                    if (i == 0)
+                                    {
+                                        infoJSONhtml += '<option value="' + infoJSON[i].idSupermercado + '" selected>' + infoJSON[i].nombreSupermercado + '</option> ';
+                                        idSup = infoJSON[i].idSupermercado;
+                                    } else {
+                                        infoJSONhtml += '<option value="' + infoJSON[i].idSupermercado + '">' + infoJSON[i].nombreSupermercado + '</option> ';
+                                    }
                                 } else {
-                                    infoJSONhtml += '<option value="' + infoJSON[i].idSupermercado + '">' + infoJSON[i].nombreSupermercado + '</option> ';
-                                }
-                            } else {
-                                if (Usuario.idSupermercado == infoJSON[i].idSupermercado)
-                                {
-                                    infoJSONhtml += '<option value="' + infoJSON[i].idSupermercado + '" selected>' + infoJSON[i].nombreSupermercado + '</option> ';
-                                    idSup = infoJSON[i].idSupermercado;
-                                } else {
-                                    infoJSONhtml += '<option value="' + infoJSON[i].idSupermercado + '">' + infoJSON[i].nombreSupermercado + '</option> ';
+                                    if (Usuario.idSupermercado == infoJSON[i].idSupermercado)
+                                    {
+                                        infoJSONhtml += '<option value="' + infoJSON[i].idSupermercado + '" selected>' + infoJSON[i].nombreSupermercado + '</option> ';
+                                        idSup = infoJSON[i].idSupermercado;
+                                    } else {
+                                        infoJSONhtml += '<option value="' + infoJSON[i].idSupermercado + '">' + infoJSON[i].nombreSupermercado + '</option> ';
+                                    }
                                 }
                             }
+                            $('#ListaSupermercados').html(infoJSONhtml);
+                            Listar(idSup);
                         }
-                        $('#ListaSupermercados').html(infoJSONhtml);
-                        Listar(idSup);
-                    }
-            );
-         }
-                 ObtenerUsuario();
-                  ListarSup();
+                );
+            }
+            ObtenerUsuario();
+            ListarSup();
             $('#btnBuscar').click(function () {
-
+                idSup = $('select[name="ListaSuper"] option:selected').val();
                 $('#tbody').html("");
                 Listar($('select[name="ListaSuper"] option:selected').val());
             });
@@ -100,6 +117,13 @@ $(document).ready(
                 );
             }
 
+            $('#verReporte').click(
+                    function (e) {
+
+                        $(location).attr('href', "../ServletReporteInconsistencias");
+                    }
+            );
+
             BuscarArticulo = function (infoJSONhtml, id, infoJSON)
             {
                 $.get('/ProyectProfeco/api/articulos/' + id,
@@ -109,13 +133,13 @@ $(document).ready(
                             var infoArt = datos;
                             if (Usuario.idTipoUsuario === 1 || Usuario.idTipoUsuario === 3)
                             {
-                                infoJSONhtml += '<tr> <td>' + infoJSON.idArticulo + '</td> <td>' + infoArt[0].nombreArticulo + '</td>' + '<td>' + infoArt[0].marca + '</td>' + ' <td>' + infoJSON.cantidad + '</td> <td>' + infoJSON.precioActual + '</td> <td><button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalModificar" onclick="MandarDatos(' + infoJSON.idArticulo + ',`' + infoArt[0].nombreArticulo + '`,' + infoJSON.idLista + ',' + infoJSON.precioActual+',' + infoJSON.precioInicial + ',' + infoJSON.estaDescuento + ')">Modificar Precio</button></td></tr>  ';
+                                infoJSONhtml += '<tr> <td>' + infoJSON.idArticulo + '</td> <td>' + infoArt[0].nombreArticulo + '</td>' + '<td>' + infoArt[0].marca + '</td>' + ' <td>' + infoJSON.cantidad + '</td> <td>' + infoJSON.precioActual + '</td> <td><button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalModificar" onclick="MandarDatos(' + infoJSON.idArticulo + ',`' + infoArt[0].nombreArticulo + '`,' + infoJSON.idLista + ',' + infoJSON.precioActual + ',' + infoJSON.precioInicial + ',' + infoJSON.estaDescuento + ')">Modificar Precio</button></td></tr>  ';
                                 if (Usuario.idTipoUsuario === 3)
                                 {
                                     $('#ListaSupermercados').prop("disabled", true);
                                 }
                             } else {
-                                infoJSONhtml += '<tr> <td>' + infoJSON.idArticulo + '</td> <td>' + infoArt[0].nombreArticulo + '</td>' + '<td>' + infoArt[0].marca + '</td>' + ' <td>' + infoJSON.cantidad + '</td> <td>' + infoJSON.precioActual + '</td> <td><button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalReportar" onclick="MandarDatos(' + infoJSON.idArticulo + ',`' + infoArt[0].nombreArticulo + '`,' + infoJSON.idLista + ',' + infoJSON.precioActual + ',' + infoJSON.precioInicial+',' + infoJSON.estaDescuento + ')">Reportar</button></td></tr>  ';
+                                infoJSONhtml += '<tr> <td>' + infoJSON.idArticulo + '</td> <td>' + infoArt[0].nombreArticulo + '</td>' + '<td>' + infoArt[0].marca + '</td>' + ' <td>' + infoJSON.cantidad + '</td> <td>' + infoJSON.precioActual + '</td> <td><button type="button" class="btn btn-secondary edit" data-toggle="modal" data-target="#ModalReportar" onclick="MandarDatos(' + infoJSON.idArticulo + ',`' + infoArt[0].nombreArticulo + '`,' + infoJSON.idLista + ',' + infoJSON.precioActual + ',' + infoJSON.precioInicial + ',' + infoJSON.estaDescuento + ')">Reportar</button></td></tr>  ';
                                 $('#agregar').css('display', 'none');
                             }
                             $('#tbody').html($('#tbody').html() + infoJSONhtml);
@@ -127,7 +151,7 @@ $(document).ready(
             }
 
 
-            MandarDatos = function (idArticulo, nombre, idLista, precioActual,precioAnterior, oferta) {
+            MandarDatos = function (idArticulo, nombre, idLista, precioActual, precioAnterior, oferta) {
 
                 $('#ModalModificar').on('show.bs.modal', function (e) {
                     $('#modArticulo').html(nombre);
@@ -135,8 +159,8 @@ $(document).ready(
                     $('#mid').html(idLista);
                 });
                 $('#ModalReportar').on('show.bs.modal', function (e) {
-                     $('#rArticulo').html(nombre);
-                       $('#rPrecioActual').val(precioActual);
+                    $('#rArticulo').html(nombre);
+                    $('#rPrecioActual').val(precioActual);
                     $('#rPrecioAnterior').val(precioAnterior);
                     $('#rid').html(idArticulo);
                 });
@@ -186,7 +210,7 @@ $(document).ready(
                         var id = $('#mid').html();
                         const data = {
                             precioActual: $('#modPrecioActual').val(),
-                            precioAnterior: $('#modPrecioAnterior').val(),
+                            precioInicial: $('#modPrecioAnterior').val(),
                             estaDescuento: oferta
                         };
                         console.log(id);
@@ -211,15 +235,15 @@ $(document).ready(
                     function (e) {
                         e.preventDefault();
                         var id = $('#rid').html();
-                        
+
                         const data = {
-                            idCliente:Usuario.idCliente,
+                            idCliente: Usuario.idCliente,
                             idSupermercado: idSup,
                             idArticulo: id,
                             precioPublicado: $('#rPrecioActual').val(),
                             precioReal: $('#rPrecioAnterior').val(),
                             comentarios: $('#Comentario').val()
-                        
+
 
                         };
                         console.log(data);
@@ -231,7 +255,7 @@ $(document).ready(
                             Accept: "application/json",
                             success: function (response) {
                                 alert("funciona bien");
-                          $(location).attr('href', "ListaArticulosXSuper.html");
+                                $(location).attr('href', "ListaArticulosXSuper.html");
                             },
                             error: function (error) {
                                 alert("No funciona");

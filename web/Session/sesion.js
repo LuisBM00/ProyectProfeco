@@ -26,7 +26,7 @@ $(document).ready(
                                             var info=datos;                                           
                                             
                                             if(datos==="esta"){                                              
-                                                $(location).attr('href',"principal.html");
+                                                $(location).attr('href',"../principal.html");
                                                 
                                             }
                                             else{

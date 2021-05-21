@@ -38,6 +38,10 @@ public class ServletConsultarUsuarioIniciado extends HttpServlet {
        try (PrintWriter out = response.getWriter()) {
      HttpSession misession= (HttpSession) request.getSession();
        Usuario usuario= (Usuario) misession.getAttribute("usuario");
+       
+       if(usuario==null){
+           out.print("null");
+       }
        String json="{\"idTipoUsuario\":"+usuario.getIdTipoUsuario()+", \"idCliente\":\""+usuario.getIdUsuario()+"\""+", \"idSupermercado\":"+usuario.getIdCOS()+"}";
    
      out.print(json);
