@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import profeco.negocio.app.dto.Usuario;
 
 /**
  *
@@ -33,9 +34,13 @@ public class ServletConsultarUsuarioIniciado extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+      
+       try (PrintWriter out = response.getWriter()) {
      HttpSession misession= (HttpSession) request.getSession();
-     out.print(misession.getAttribute("usuario"));
+       Usuario usuario= (Usuario) misession.getAttribute("usuario");
+       String json="{\"idTipoUsuario\":"+usuario.getIdTipoUsuario()+", \"idCliente\":\""+usuario.getIdUsuario()+"\""+", \"idSupermercado\":"+usuario.getIdCOS()+"}";
+   
+     out.print(json);
         }
     }
 

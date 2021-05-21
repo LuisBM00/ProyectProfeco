@@ -12,9 +12,10 @@ package profeco.negocio.app.dto;
 public class ReporteInconsistencia {
     
     private int idReporte;
-    private int idCliente;
+    private String idCliente;
     private int idSupermercado;
     private int idArticulo;
+    
     
     private double PrecioPublicado;
     private double PrecioReal;
@@ -25,7 +26,7 @@ public class ReporteInconsistencia {
         return idReporte;
     }
 
-    public int getIdCliente() {
+    public String getIdCliente() {
         return idCliente;
     }
 
@@ -53,7 +54,7 @@ public class ReporteInconsistencia {
         this.idReporte = idReporte;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
     }
 

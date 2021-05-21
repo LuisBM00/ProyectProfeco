@@ -8,6 +8,10 @@ package profeco.negocio.app.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -35,7 +39,7 @@ public class ServletValidacionLogin extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NoSuchAlgorithmException {
         response.setContentType("text/html;charset=UTF-8");
         String email = request.getParameter("Email");
         String password = request.getParameter("Password");
@@ -67,12 +71,12 @@ public class ServletValidacionLogin extends HttpServlet {
 
     }
     
-    boolean ValidarUsuario(String email, String password){
+    boolean ValidarUsuario(String email, String password) throws NoSuchAlgorithmException{
         Usuario[] arr = new UsuarioServices().Listar("");
         boolean UsuarioCorrecto = false;
-        
+       String Contra = encriptarPassword(password, "MD5");
         for (int i = 0; i < arr.length; i++) {
-            if (email.toLowerCase().equals(arr[i].getCorreo().toLowerCase()) && password.equals(arr[i].getContrasena())) {
+            if (email.toLowerCase().equals(arr[i].getCorreo().toLowerCase()) && Contra.equals(arr[i].getContrasena())) {
                 UsuarioCorrecto = true;
                 break;
             }
@@ -97,6 +101,24 @@ public class ServletValidacionLogin extends HttpServlet {
         
         
     }
+    
+    public String encriptarPassword(String password, String algoritmo) 
+           throws NoSuchAlgorithmException {
+        //Crea el "digester"
+        MessageDigest md = MessageDigest.getInstance(algoritmo);
+        md.reset();
+        //Calcula el valor del digest
+        byte[] digest = md.digest(password.getBytes());
+        //Convierte el digest a cadena hexadecimal
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<digest.length;i++) {
+            String valHex = Integer.toHexString(digest[i] & 0xFF);
+            if (valHex.length()==1)
+                sb.append("0");
+            sb.append(valHex);
+        }
+        return sb.toString();
+    }
    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -111,7 +133,11 @@ public class ServletValidacionLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ServletValidacionLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -125,7 +151,11 @@ public class ServletValidacionLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ServletValidacionLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

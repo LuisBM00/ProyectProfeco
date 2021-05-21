@@ -12,7 +12,7 @@ package profeco.negocio.app.dto;
 public class CalificacionesComentarios {
     
     private int idCalificacion;
-    private int idCliente;
+    private String idCliente;
     private int idSupermercado;
     private float Calificacion;
     private String Comentario;
@@ -20,7 +20,7 @@ public class CalificacionesComentarios {
     public CalificacionesComentarios() {
     }
 
-    public CalificacionesComentarios(int idCalificacion, int idCliente, int idSupermercado, float Calificacion, String Comentario) {
+    public CalificacionesComentarios(int idCalificacion, String idCliente, int idSupermercado, float Calificacion, String Comentario) {
         this.idCalificacion = idCalificacion;
         this.idCliente = idCliente;
         this.idSupermercado = idSupermercado;
@@ -32,7 +32,7 @@ public class CalificacionesComentarios {
         return idCalificacion;
     }
 
-    public int getIdCliente() {
+    public String getIdCliente() {
         return idCliente;
     }
 
@@ -52,7 +52,7 @@ public class CalificacionesComentarios {
         this.idCalificacion = idCalificacion;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
     }
 

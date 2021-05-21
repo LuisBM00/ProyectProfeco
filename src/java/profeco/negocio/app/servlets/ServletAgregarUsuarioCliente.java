@@ -64,11 +64,11 @@ public class ServletAgregarUsuarioCliente extends HttpServlet {
             services.Agregar(str);
 
             Usuario obj = new Usuario();
-
+            Contrasena  = new ServletValidacionLogin().encriptarPassword(Contrasena, "MD5");
             obj.setIdUsuario(idUsuario);
             obj.setIdTipoUsuario(2);
             obj.setNombre(Nombre);
-            obj.setIdCOS(2);
+            obj.setIdCOS(0);
             obj.setContrasena(Contrasena);
             obj.setCorreo(Correo);
 

@@ -17,19 +17,19 @@ public class ListaArticulosXSuper {
    private int Cantidad;
    private double PrecioActual;
    private double PrecioInicial;
-   private byte PorcentajeDescuento;
+   private byte EstaDescuento;
 
     public ListaArticulosXSuper() {
     }
 
-    public ListaArticulosXSuper(int idLista, int idSupermercado, int idArticulo, int Cantidad, double PrecioActual, double PrecioInicial, byte PorcentajeDescuento) {
+    public ListaArticulosXSuper(int idLista, int idSupermercado, int idArticulo, int Cantidad, double PrecioActual, double PrecioInicial, byte EstaDescuento) {
         this.idLista = idLista;
         this.idSupermercado = idSupermercado;
         this.idArticulo = idArticulo;
         this.Cantidad = Cantidad;
         this.PrecioActual = PrecioActual;
         this.PrecioInicial = PrecioInicial;
-        this.PorcentajeDescuento = PorcentajeDescuento;
+        this.EstaDescuento = EstaDescuento;
     }
 
     public int getIdLista() {
@@ -56,8 +56,8 @@ public class ListaArticulosXSuper {
         return PrecioInicial;
     }
 
-    public byte getPorcentajeDescuento() {
-        return PorcentajeDescuento;
+    public byte getEstaDescuento() {
+        return EstaDescuento;
     }
 
     public void setIdLista(int idLista) {
@@ -84,8 +84,8 @@ public class ListaArticulosXSuper {
         this.PrecioInicial = PrecioInicial;
     }
 
-    public void setPorcentajeDescuento(byte PorcentajeDescuento) {
-        this.PorcentajeDescuento = PorcentajeDescuento;
+    public void setEstaDescuento(byte EstaDescuento) {
+        this.EstaDescuento = EstaDescuento;
     }
 
     

@@ -23,8 +23,9 @@ import javax.ws.rs.core.UriInfo;
 import profeco.negocio.app.services.UsuarioServices;
 
 import profeco.negocio.app.dto.Usuario;
+import profeco.negocio.app.servlets.ServletValidacionLogin;
 
-@Path("/users")
+@Path("/usuarios")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UsuarioResources {
@@ -81,6 +82,7 @@ public class UsuarioResources {
     public Response addUsuario(Usuario obj, @Context UriInfo uriInfo) {
 
         try {
+            obj.setContrasena( new ServletValidacionLogin().encriptarPassword(obj.getContrasena(), "MD5"));
             servicio.Agregar(obj);
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();

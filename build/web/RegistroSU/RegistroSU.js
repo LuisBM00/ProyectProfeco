@@ -1,7 +1,7 @@
 
 $(document).ready(
         function () {
-              $.get('/ProfecoAPP/api/usuarios',
+              $.get('/ProyectProfeco/api/usuarios',
                     function (datos)
                     {
                         var infoJSON = datos;
@@ -21,7 +21,7 @@ $(document).ready(
                         };
                               
                         $.ajax({
-                            url: '/ProfecoAPP/api/usuarios/',
+                            url: '/ProyectProfeco/api/usuarios/',
                             data: JSON.stringify(datos),                          
                             method: 'post', //en este caso 
                             contentType: "application/json",

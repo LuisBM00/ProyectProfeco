@@ -19,7 +19,7 @@ $(document).ready(
                         
                         else{
                             
-                            $.post('ServletValidacionLogin',$('#formulario').serialize()).done(
+                            $.post('../ServletValidacionLogin',$('#formulario').serialize()).done(
                                     function(datos)
                                         {
                                             

@@ -25,7 +25,7 @@ public final class Conexion {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
             //Conexion a SQL
-            cn = DriverManager.getConnection("jdbc:sqlserver://sql5103.site4now.net; database=DB_A711A6_Profeco; user=DB_A711A6_Profeco_admin ; password=adodesconectado1;");
+            cn = DriverManager.getConnection("jdbc:sqlserver://sql5104.site4now.net; database=db_a747f3_profecoapp; user=db_a747f3_profecoapp_admin ; password=adodesconectado1;");
             //jdbc:sqlserver//DESKTOP-UC0TM7V\\SQLEXPRESS;1433;databaseName=Motel;user=usuarioSQL;password=321;
         } catch (SQLException e) {
             System.out.println(e.toString());
